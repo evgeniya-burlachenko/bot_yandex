@@ -7,9 +7,17 @@
 // @match        https://yandex.ru/*
 // @grant        none
 // ==/UserScript==
+
+/*(function() {
+    "use strict";
+
+
+})();*/
+
 let keywords = ['Гобой','Как звучит флейта', 'Кларнет'];
 let keyword = keywords[getRandom(0,keywords.length)];
 let btnYa = document.querySelectorAll(".button_theme_websearch")[0];
+
 
 if (btnYa != undefined){
     text.value = keyword;
@@ -20,6 +28,7 @@ if (btnYa != undefined){
     for(let i=0; i<links.length; i++){
         if(links[i].href.indexOf("xn----7sbab5aqcbiddtdj1e1g.xn--p1ai") !=-1){
             console.log("ссылка найдена " + links[i]);
+            links[i].removeAttribute("target");
             links[i].click();
             break;
         }
@@ -29,4 +38,3 @@ if (btnYa != undefined){
 function getRandom(min,max){
     return Math.floor(Math.random()*(max-min)+min);
 }
-
