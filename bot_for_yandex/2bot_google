@@ -10,13 +10,13 @@
 // @grant        none
 // ==/UserScript==
 
-let sites = { //переменная для хранения сайтов .обьект
-   "xn----7sbab5aqcbiddtdj1e1g.xn--p1ai": ['Гобой','Как звучит флейта', 'Кларнет','Саксофон','Тромбон','Валторна'], // ключ: значение
-   "crushdrummers.ru":['Барабанное шоу','Заказать барабанное шоу','Шоу барабанщиков в Москве']
+let sites = {
+    "xn----7sbab5aqcbiddtdj1e1g.xn--p1ai":['Гобой','Как звучит флейта', 'Кларнет','Саксофон','Тромбон','Валторна'],
+    "crushdrummers.ru":['Барабанное шоу','Заказать барабанное шоу','Шоу барабанщиков в Москве']
 };
-let site = Object.keys(sites)[getRandom(0,Object.keys(sites).length)]; //Метод keys() возвращает новый итератор массива Array Iterator, содержащий ключи каждого индекса в массиве.
+let site = Object.keys(sites)[getRandom(0,Object.keys(sites).length)];
 let googleInput = document.getElementsByName('q')[0];
-let keywords = sites[site];//в переменную попадет случайный сайт, либо 1ый либо 2ой
+let keywords = sites[site];
 let keyword = keywords[getRandom(0,keywords.length)];
 let btnK = document.getElementsByName('btnK')[0];
 let i =0;
@@ -30,13 +30,14 @@ if (btnK != undefined){
     site = location.hostname;
 }
 
+
 if (btnK != undefined){
     document.cookie = "site="+site;
-    let timerId = setInterval(()=>{ // (()=> == function()
-        googleInput.value += keyword[i];//в googleInput пишем по 1ой букве
+    let timerId = setInterval(()=>{
+        googleInput.value += keyword[i];
         i++;
-        if (i==keyword.length){ //
-            clearInterval(timerId);//Функция clearInterval останавливает таймер, заданный функцией setInterval
+        if (i==keyword.length){
+            clearInterval(timerId);
             btnK.click();
         }
     },1000);
